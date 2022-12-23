@@ -1,0 +1,66 @@
+.task {
+  display: flex;
+  justify-content: top;
+  gap: 1.2rem;
+  padding: 1.6rem;
+
+  background-color: var(--gray-400);
+  box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.06);
+
+  border-radius: 0.8rem;
+  border: 0.1rem solid var(--gray-400);
+}
+
+.buttonCheck {
+  background: none;
+  border: none;
+}
+
+.buttonCheck:focus {
+  box-shadow: none;
+}
+
+.uncheckedCircle {
+  color: var(--blue);
+  transition: 0.2s;
+}
+
+.uncheckedCircle:hover {
+  border-radius: 99.9rem;
+  background-color: var(--blue-dark)
+}
+
+.span {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 140%;
+  color: var(--gray-100);
+}
+
+.spanChecked {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 140%;
+  text-decoration: line-through;
+  color: var(--gray-300);
+}
+
+.buttonRemove {
+  background: none;
+  border: none;
+}
+
+.buttonRemove:focus {
+  box-shadow: none;
+}
+
+.buttonRemove {
+  color: var(--gray-300);
+  transition: 0.2s;
+}
+
+.buttonRemove:hover {
+  color: var(--danger);
+  border-radius: 99.9rem;
+}

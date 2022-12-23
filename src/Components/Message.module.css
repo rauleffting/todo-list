@@ -1,0 +1,27 @@
+.message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 6.4rem 2.4rem;
+}
+
+.message img {
+  width: 5.6rem;
+  height: 5.6rem;
+
+  margin-bottom: 1.6rem;
+}
+
+.message strong {
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 2.24rem;
+}
+
+.message span {
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 2.24rem;
+}
