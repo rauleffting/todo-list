@@ -5,6 +5,19 @@
 
 .content {
   padding: 9.1rem 35.2rem 0;
+  animation: downtop 1s 300ms backwards;
+}
+
+@keyframes downtop {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .section {
@@ -42,6 +55,9 @@
 }
 
 .tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
   border-top: 0.1rem solid var(--gray-400);
   border-radius: 0.8rem;
 }

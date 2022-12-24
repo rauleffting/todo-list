@@ -1,6 +1,6 @@
 import { InputHTMLAttributes, useState } from 'react';
 
-import { Button } from './Button';
+import { PlusCircle } from 'phosphor-react';
 
 import styles from './Header.module.css';
 
@@ -13,12 +13,13 @@ interface AddTask {
 export function Header({ handleAddTask }: AddTask) {
   const[content, setContent] = useState('')
 
-  function handleSetContent(event: InputHTMLAttributes<HTMLInputElement>) {
+  function handleSetContent(event: React.ChangeEvent<HTMLInputElement>) {
     setContent(event.target.value);
   }
 
   function handleAdd(){
     handleAddTask(content);
+    setContent('');
   }
 
   return(
@@ -34,12 +35,17 @@ export function Header({ handleAddTask }: AddTask) {
         <input 
           type="text" 
           placeholder="Add a new task" 
+          value={content}
           className={styles.input}
           onChange={handleSetContent}
         />
-        <Button 
-          onClick={handleAdd}
-        />
+      <button 
+        className={styles.button}
+        onClick={handleAdd}
+      >
+        <span>Create</span>
+        <PlusCircle size={16} />
+      </button>
       </div>
 
     </div>

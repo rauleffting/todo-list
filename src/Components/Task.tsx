@@ -6,18 +6,33 @@ import styles from './Task.module.css';
 
 interface taskProps {
   content: string,
-  handleRemove: (task: string) => void;
+  handleRemove: (task: string, concluded: number) => void;
+  handleChangeConcludedTasks: (concluded: number) => void;
 }
 
-export function Task({ content, handleRemove, ...rest }: taskProps) {
+export function Task({ content, handleRemove, handleChangeConcludedTasks, ...rest }: taskProps) {
   const [checked, setChecked] = useState(false);
 
   function handleCheck(){
-    checked ? setChecked(false) : setChecked(true);
+    if(checked){
+      setChecked(false);
+      let concluded = -1;
+      handleChangeConcludedTasks(concluded);
+    } else {
+      setChecked(true);
+      let concluded = 1;
+      handleChangeConcludedTasks(concluded);
+    }
   }
 
   function handleRemoveTask(){
-    handleRemove(content);
+    if(checked){
+      let concluded = -1;
+      handleRemove(content, concluded);
+    } else {
+      let concluded = 0;
+      handleRemove(content, concluded)
+    }
   }
 
   return(

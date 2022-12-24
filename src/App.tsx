@@ -8,24 +8,21 @@ import styles from './App.module.css';
 import './global.css';
 
 export function App() {
-  const [noTask, setNoTask] = useState(false);
-  const [tasks, setTasks] = useState([
-    {
-      content: "Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.",
-    },
-  ])
+  const [tasks, setTasks] = useState<string[]>([]);
+  const [concludedTasks, setConcludedTasks] = useState(0);
 
-  function handleRemove(content: string){
-    let updatedTasks = tasks.filter(task => task.content !== content);
+  function handleRemove(oldTask: string, concluded: number){
+    let updatedTasks = tasks.filter(task => task !== oldTask);
     setTasks([...updatedTasks]);
-    if(tasks == null){
-      setNoTask(true);
-    }
-    console.log(tasks);
+    setConcludedTasks(prevState => prevState + concluded);
   }
 
   function handleAddTask(content: string){
     setTasks([...tasks, content]);
+  }
+
+  function handleChangeConcludedTasks(concluded: number) {
+    setConcludedTasks(prevState => prevState + concluded);
   }
 
   return (
@@ -36,20 +33,30 @@ export function App() {
         <div className={styles.section}>
           <div className={styles.wrapper}>
             <span className={styles.created}>Tasks</span>
-            <span className={styles.counter}>0</span>
+            <span className={styles.counter}>{tasks.length}</span>
           </div>
 
           <div className={styles.wrapper}>
             <span className={styles.done}>Finished</span>
-            <span className={styles.counter}>0</span>
+            {
+              tasks ? 
+              <span className={styles.counter}>{concludedTasks} of {tasks.length}</span> :
+              <span className={styles.counter}>0</span>
+            }  
           </div>
         </div>
 
         <div className={styles.tasks}>
           {
-            noTask ? <Message /> : 
+            tasks.length == 0 ? 
+            <Message /> : 
             tasks.map(task => {
-              return <Task key={task.content} content={task.content} handleRemove={handleRemove} />
+              return <Task 
+                        key={task} 
+                        content={task} 
+                        handleRemove={handleRemove} 
+                        handleChangeConcludedTasks={handleChangeConcludedTasks}
+                      />
             })
           }
         </div>
